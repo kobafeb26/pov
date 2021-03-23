@@ -1,0 +1,14 @@
+bin/data/.gitkeep
+bin/data/mono0755.ttf
+bin/pov.app/Contents/Info.plist
+bin/pov.app/Contents/PkgInfo
+bin/pov.app/Contents/_CodeSignature/CodeResources
+bin/pov.app/Contents/Frameworks/libfmodex.dylib
+bin/pov.app/Contents/MacOS/pov
+bin/pov.app/Contents/Resources/icon.icns
+bin/povDebug.app/Contents/Info.plist
+bin/povDebug.app/Contents/PkgInfo
+bin/povDebug.app/Contents/_CodeSignature/CodeResources
+bin/povDebug.app/Contents/Frameworks/libfmodex.dylib
+bin/povDebug.app/Contents/MacOS/povDebug
+bin/povDebug.app/Contents/Resources/icon-debug.icns
