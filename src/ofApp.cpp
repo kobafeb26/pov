@@ -8,8 +8,7 @@ void ofApp::setup(){
     
     dataReciveController.setup();
     
-    SharedData::instance().isSony = ISSONY;
-    
+   
     
     SwitchCameraController::setup();
     
@@ -27,7 +26,7 @@ void ofApp::setup(){
     std::vector<ActorController*>* actorsRef = &SharedData::instance().actorsRef;
     std::vector<WathcerModel*>* wathcersRef = &SharedData::instance().wathcersRef;
     
-
+    
     //==ゴーグル初期化
     GogglesController *g = new GogglesController;
     WathcerModel *w;
@@ -37,19 +36,13 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID = 199;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 199;
-        g->watcher_id = 531;
-    }else{
-        g->camera_id = 0;
-        g->watcher_id = 0;
-    }
+    g->camera_id = 0;
+    g->watcher_id = 0;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    //g->intarvalCounter = 0;
+    g->y = 0;
+    g->x = 200;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
     
@@ -59,20 +52,12 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID = 200;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 200;
-        g->watcher_id = 534;
-    }else{
-        g->camera_id = 1;
-        g->watcher_id = 1;
-    }
+    g->camera_id = 1;
+    g->watcher_id = 1;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    g->y = 0;
+    g->x = 200;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
     
@@ -81,19 +66,12 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID = 201;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 201;
-        g->watcher_id = 533;
-    }else{
-        g->camera_id = 2;
-        g->watcher_id = 2;
-    }
+    g->camera_id = 2;
+    g->watcher_id = 2;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    g->y = 0;
+    g->x = 0;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
     
@@ -102,19 +80,13 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID = 202;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 202;
-        g->watcher_id = 532;
-    }else{
-        g->camera_id = 3;
-        g->watcher_id = 3;
-    }
+    g->camera_id = 3;
+    g->watcher_id = 3;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    //g->intarvalCounter = 0;
+    g->y = 0;
+    g->x = 0;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
 
@@ -123,19 +95,13 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID = 203;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 203;
-        g->watcher_id = 542;
-    }else{
-        g->camera_id = 4;
-        g->watcher_id = 4;
-    }
+    g->camera_id = 4;
+    g->watcher_id = 4;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    //g->intarvalCounter = 0;
+    g->y = 0;
+    g->x = -100;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
 
@@ -144,19 +110,13 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID =204;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 204;
-        g->watcher_id = 543;
-    }else{
-        g->camera_id = 5;
-        g->watcher_id = 5;
-    }
+    g->camera_id = 5;
+    g->watcher_id = 5;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    //g->intarvalCounter = 0;
+    g->y = 0;
+    g->x = -100;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
 
@@ -166,22 +126,35 @@ void ofApp::setup(){
     g = new GogglesController;
     g->setup();
     g->dataID =205;
-    if(SharedData::instance().isSony)
-    {
-        g->camera_id = 205;
-        g->watcher_id = 543;
-    }else{
-        g->camera_id = 6;
-        g->watcher_id = 6;
-    }
+    g->camera_id = 6;
+    g->watcher_id = 6;
     w->camera_id = g->camera_id;
     w->watcher_id = g->watcher_id;
-    g->intarvalCounter = 0;
-    g->y = 10000;
-    g->x = 0.1;
+    //g->intarvalCounter = 0;
+    g->y = 0;
+    g->x = 100;
     gogglesesRef->push_back(g);
     wathcersRef->push_back(w);
 
+    
+    //--7--//
+    w = new WathcerModel;
+    g = new GogglesController;
+    g->setup();
+    g->dataID =206;
+    g->camera_id = 7;
+    g->watcher_id = 7;
+    w->camera_id = g->camera_id;
+    w->watcher_id = g->watcher_id;
+    //g->intarvalCounter = 0;
+    g->y = 0;
+    g->x = 300;
+    gogglesesRef->push_back(g);
+    wathcersRef->push_back(w);
+    
+    
+    
+    
     
 //    w = new WathcerModel;
 //    w->camera_id = 0;
@@ -199,92 +172,129 @@ void ofApp::setup(){
     ActorController *a;
 
     
-    //--0--//
-    a = new ActorController;
-    a->id = 199;
-    a->x = 0;
-    a->y = 0;
-    a->z = 10000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
+//    //--0--//
+//    a = new ActorController;
+//    a->id = 199;
+//    a->x = 300;
+//    a->y = 500;
+//    a->z = 0;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
 
     
     
-    //--1--//
-    a = new ActorController;
-    a->id = 200;
-    a->x = 0;
-    a->y = 0;
-    a->z = 10000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
-
-    //--2--//
-    a = new ActorController;
-    a->id = 201;
-    a->x = 0;
-    a->y = 0;
-    a->z = 1000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
-
-    //--3--//
-    a = new ActorController;
-    a->id = 202;
-    a->x = 0;
-    a->y = 0;
-    a->z = 10000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
-
-    //--4--//
-    a = new ActorController;
-    a->id = 203;
-    a->x = 0;
-    a->y = 0;
-    a->z = 10000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
-
-    //--5--//
-    a = new ActorController;
-    a->id = 204;
-    a->x = 0;
-    a->y = 0;
-    a->z =  10000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
-    
-    //--6--//
-    a = new ActorController;
-    a->id = 205;
-    a->x = 0;
-    a->y = 0;
-    a->z = 10000;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
-    actorsRef->push_back(a);
+//    //--1--//
+//    a = new ActorController;
+//    a->id = 200;
+//    a->x = 0;
+//    a->y = 0;
+//    a->z = 0;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
+//
+//    //--2--//
+//    a = new ActorController;
+//    a->id = 201;
+//    a->x = 0;
+//    a->y = 0;
+//    a->z = 1000;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
+//
+//    //--3--//
+//    a = new ActorController;
+//    a->id = 202;
+//    a->x = 0;
+//    a->y = 0;
+//    a->z = 1000;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
+//
+//    //--4--//
+//    a = new ActorController;
+//    a->id = 203;
+//    a->x = 0;
+//    a->y = 0;
+//    a->z = 1000;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
+//
+//    //--5--//
+//    a = new ActorController;
+//    a->id = 204;
+//    a->x = 0;
+//    a->y = 0;
+//    a->z = 1000;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
+//
+//    //--6--//
+//    a = new ActorController;
+//    a->id = 205;
+//    a->x = 0;
+//    a->y = 0;
+//    a->z = 1000;
+//    a->width = 50;
+//    a->height = 190;
+//    a->depth = 50;
+//    actorsRef->push_back(a);
+//
     
     
     //--Dancer1--//
     a = new ActorController;
     a->id = 501;
     a->x = 0;
-    a->y = 0;
-    a->z = 10000;
+    a->y = 500;
+    a->z = 0;
+    a->width = 50;
+    a->height = 190;
+    a->depth = 50;
+    actorsRef->push_back(a);
+    
+    
+    //--Dancer2--//
+    a = new ActorController;
+    a->id = 502;
+    a->x = -100;
+    a->y = 500;
+    a->z = 0;
+    a->width = 50;
+    a->height = 190;
+    a->depth = 50;
+    actorsRef->push_back(a);
+    
+    
+    //--Dancer3--//
+    a = new ActorController;
+    a->id = 503;
+    a->x = 200;
+    a->y = 500;
+    a->z = 0;
+    a->width = 50;
+    a->height = 190;
+    a->depth = 50;
+    actorsRef->push_back(a);
+    
+    
+    //--Dancer4--//
+    a = new ActorController;
+    a->id = 504;
+    a->x = 100;
+    a->y = 500;
+    a->z = 0;
     a->width = 50;
     a->height = 190;
     a->depth = 50;
@@ -330,7 +340,9 @@ void ofApp::setup(){
     }
 
     gui.setup(); // most of the time you don't need a name
-    gui.add(uiSliderInterval.setup("interval", /*def*/1000, /*min*/1000, /*max*/3000));
+    gui.add(CameraEnable.setup("Camera Enable", true));
+    gui.add(SwitchCameraEnable.setup("Switch camera Enable", false));
+    gui.add(uiSliderInterval.setup("interval", /*def*/1000, /*min*/300, /*max*/3000));
     
     
     // ライティングを有効に
@@ -359,60 +371,84 @@ void ofApp::update(){
     
     for (auto a : *actorsRef)
     {
-        a->watcherGoggleses.clear();
-        a->update();
+        a->watch_cameras.clear();
+        a->parentRef = NULL;
+        a->isParent = false;
+        a->updatePos();
     }
     
-    //見ているモノをチェック
-    for (auto g : *gogglesesRef)
+    //if(SwitchCameraEnable)
     {
-        g->update();
-        int aid = g->intersectsPrimitive(&(*actorsRef));
-        if(aid >= 0)
+        //アクターのグルーピング
+        for (auto a : *actorsRef)
         {
-            for (auto a : *actorsRef)
+      
+            for (auto a2 : *actorsRef)
             {
-                if(a->id == aid)
+
+                if(a->id == a2->id){
+                    //a->isParent = true;
+                    continue;
+                }
+                //２点の距離　sqrt( (x1-x2)^2 + (y1-y2)^2 )
+                float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2));
+                if(dist <= 100)
                 {
-                    a->watcherGoggleses.push_back(g->camera_id);
+                    if(!a2->isParent && a2->parentRef == NULL)//まだ親が見つけられてない
+                    {
+                        //std::cout << a->id << " near " << a2->id << std::endl;
+                        if(a->parentRef==NULL)
+                        {
+                            a2->parentRef = a;
+                            a->isParent = true;
+                        }else{
+                            a2->parentRef = a->parentRef;
+                        }
+                    }
                 }
             }
-        }else{
-            g->resetSwitch();
-            
+
         }
-    }
-    
-    //同じモノをみてるゴーグルを探す
-    for (auto g : *gogglesesRef)
-    {
-        g->checkSamePovCamera(&(*gogglesesRef));
-    }
-    
-    
-    
-    //スイッチング
-    if(SharedData::instance().isSony){
-        uint64_t nowtime = ofGetElapsedTimeMillis();
-        //if((nowtime-beforeTime) > REQUEST_INTERVAL) //interval(msec)
-        if((nowtime-beforeTime) > uiSliderInterval) //interval(msec)
-        {
-            std::cout << "--------" << std::endl;
-            std::cout << "  Interval : " << nowtime-beforeTime << " msec" << std::endl;
-            beforeTime = nowtime;
-            //スイッチング
-            for (auto g : *gogglesesRef)
-            {
-                g->switching(uiSliderInterval, uiSliderInterval);
-            }
-            
-            SwitchCameraController::switcher();
-        }
-    }else{
+        
+        
+        //各ゴーグルが何をみているか確認する
         for (auto g : *gogglesesRef)
         {
-            g->switching(uiSliderInterval, uiSliderInterval);
+            g->update();//ゴーグルのポジションをアップデート
+            int aid = g->intersectsPrimitive(&(*actorsRef));//見ているアクトを探す
+            if(aid >= 0)
+            {
+                for (auto a : *actorsRef) //アクト本体を探す
+                {
+                    if(a->id == aid)//見つけたアクトの配列にカメラIDを追加
+                    {
+                        //a->watcherGoggleses.push_back(g->camera_id);
+                        if(a->isParent||a->parentRef == NULL)//親がいなかったらそのアクターに代入
+                        {
+                            a->watch_cameras.push_back(g->camera_id);
+                        }else{ //親がいたら、親のアクターに代入
+                            a->parentRef->watch_cameras.push_back(g->camera_id);
+                        }
+                    }
+                }
+            }else{
+                //g->resetSwitch();//見ているものがなかったらゴーグルのスイッチングをリセット
+                
+            }
         }
+    }
+    
+    //配信アプリへ切り替え指示
+    for (auto g : *gogglesesRef)
+    {
+        g->send(CameraEnable, SwitchCameraEnable);
+    }
+    
+    
+    //カメラ切り替え
+    for (auto a : *actorsRef)
+    {
+        a->updateCam(uiSliderInterval);
     }
 }
 
@@ -502,7 +538,7 @@ void ofApp::draw(){
         {
             ss << "act:" << a->id;
             ss << " watcher: ";
-            for (auto w : a->watcherGoggleses)
+            for (auto w : a->watch_cameras)
             {
                 ss << w << ",";
             }
@@ -514,16 +550,16 @@ void ofApp::draw(){
         ss << "Watcher List" << endl;
         for (auto g : *gogglesesRef)
         {
-            ss << "min_int:" << g->minInterval;
+            //ss << "min_int:" << g->minInterval;
             ss << " watcher:" << g->watcher_id;
             ss << " pov_actor:" << g->actorID;
             ss << " camera: ";
-            ss << g->switch_camera_id_buf;
-            ss << " cameras: ";
-            for (auto c : g->samePovCameras)
-            {
-                ss << c << ",";
-            }
+            ss << g->debug_cameraID;
+//            ss << " cameras: ";
+//            for (auto c : g->samePovCameras)
+//            {
+//                ss << c << ",";
+//            }
             ss << endl;
             
         }
@@ -630,7 +666,7 @@ void ofApp::keyPressed(int key){
             break;
             
         case '1':
-            SwitchCameraController::switcher();
+            //SwitchCameraController::switcher();
             break;
             
         case '2':

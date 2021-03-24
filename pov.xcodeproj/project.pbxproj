@@ -956,7 +956,7 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					E4B69B5A0A3A1756003C02F2 = {
-						DevelopmentTeam = 49B3QM3UFU;
+						DevelopmentTeam = Y5LQJK39JM;
 					};
 				};
 			};
@@ -1251,7 +1251,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 49B3QM3UFU;
+				DEVELOPMENT_TEAM = Y5LQJK39JM;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;

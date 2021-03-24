@@ -14,7 +14,7 @@ class SwitchCameraController
     
     static ofxOscSender oscSender;
 public:
-    static void switcher();
+    //static void switcher();
     static void switcher(int camera_id, int watcher_id);
     static void setup();
     

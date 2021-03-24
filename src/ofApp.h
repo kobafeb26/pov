@@ -52,6 +52,9 @@ private:
     ofxPanel gui;
     
     ofxIntSlider uiSliderInterval;
+    ofxToggle CameraEnable;
+    ofxToggle SwitchCameraEnable;
+    
     
     int intarvalCounter;
 };

@@ -21,10 +21,10 @@ void GogglesController::setup()
     ray.setup(center.getGlobalPosition(), rayDirection);
     
     
-    samePovCamerasIndex = 0;
+    //samePovCamerasIndex = 0;
     //intarvalCounter = 0xffff;
     
-    switch_camera_id_buf = -1;
+    //switch_camera_id_buf = -1;
 }
 
 void GogglesController::update()
@@ -48,15 +48,16 @@ void GogglesController::update()
     
 }
 
-void GogglesController::resetSwitch()
-{
-    beforeTime = 0;
-    samePovCamerasIndex =0;
-}
+//void GogglesController::resetSwitch()
+//{
+//    beforeTime = 0;
+//    samePovCamerasIndex =0;
+//}
 int GogglesController::intersectsPrimitive(std::vector<ActorController*>* actorsRef)
 {
 
     actorID = -1;
+    lookActorRef = NULL;
     actorDistance = 999999999.0;
     for (auto a : *actorsRef)
     {
@@ -65,13 +66,18 @@ int GogglesController::intersectsPrimitive(std::vector<ActorController*>* actors
         glm::vec3 surfaceNormal;
         
         
-        if(a->id == dataID ) continue;
+        if(a->id == dataID ) continue; //自分のアクターなので参照しない
+        
+        //TODO : 自分のアクターが、見ているグループの中にいたら弾く
+        
+        
         if(ray.intersectsPrimitive(a->box, baricentricCoordinates, dist, surfaceNormal)){
             if(dist > 0 && dist < actorDistance)
             {
                 
                 actorID = a->id;
                 actorDistance = dist;
+                lookActorRef = a;
             }
 
         }
@@ -81,123 +87,72 @@ int GogglesController::intersectsPrimitive(std::vector<ActorController*>* actors
     return actorID;
 }
 
-void GogglesController::switching(int _myInterval, int _otherInterval)
+void GogglesController::send(bool isCameraEnable, bool isCameraSwitchingEnable)
 {
-    if(SharedData::instance().isSony)
+    int camid = -1;
+    if(!isCameraEnable)
     {
-        if(samePovCameras.size()-1 < samePovCamerasIndex) samePovCamerasIndex = 0;
-        
-        
-        
-        int switch_camera_id = samePovCameras[samePovCamerasIndex];
-        switch_camera_id_buf = switch_camera_id;
-        std::vector<WathcerModel*>* wathcersRef = &SharedData::instance().wathcersRef;
-        for(WathcerModel* w :  *wathcersRef)
+        debug_cameraID = camid;
+        SwitchCameraController::switcher(camid, watcher_id);
+    }else if(isCameraSwitchingEnable)
+    {
+        if(lookActorRef!=NULL)
         {
-            if(w->watcher_id == watcher_id)
-            {
-                w->camera_id = switch_camera_id;
-                break;
-            }
+            
+            camid = lookActorRef->getCamID();
         }
         
-        samePovCamerasIndex++;
-    }else
-    {
-        
-        minInterval = _myInterval/samePovCameras.size();
+        if(sendCameraIDBefore!=camid)
+        {
+            sendCameraIDBefore = camid;
+            if(camid < 0) //見ているアクターが無い
+            {
+                debug_cameraID = camera_id;
+                SwitchCameraController::switcher(camera_id, watcher_id);
+            }else{ //アクターを見ている
+                debug_cameraID = camid;
+                SwitchCameraController::switcher(camid, watcher_id);
+            }
+        }
+    }else{
+        debug_cameraID = camera_id;
+        SwitchCameraController::switcher(camera_id, watcher_id);
+    }
 
-        //スイッチング
-        uint64_t nowtime = ofGetElapsedTimeMillis();
-        if((nowtime-beforeTime) > minInterval) //interval(msec)
-        {
-            beforeTime = nowtime;
-            //if(samePovCameras.size()-1 < samePovCamerasIndex) samePovCamerasIndex = 1; //テスト用
-            if(samePovCameras.size()-1 < samePovCamerasIndex) samePovCamerasIndex = 0;
-            int switch_camera_id = samePovCameras[samePovCamerasIndex];
-            if(switch_camera_id != switch_camera_id_buf)
-            {
-                switch_camera_id_buf = switch_camera_id;
-                SwitchCameraController::switcher(switch_camera_id_buf, watcher_id);
-                //if(watcher_id == 1) SwitchCameraController::switcher(STREEM_GROUP_ID, switch_camera_id_buf, 6);
-            }
-            samePovCamerasIndex++;
-        }
-            
-        
-        
-        
-        
-    }
-//    if(switch_camera_id_buf == camera_id)
+}
+//void GogglesController::switching(int _myInterval, int _otherInterval)
+//{
+//    if(samePovCameras.size()-1 < samePovCamerasIndex) samePovCamerasIndex = 0;
+//    int switch_camera_id = samePovCameras[samePovCamerasIndex];
+//    switch_camera_id_buf = switch_camera_id;
+//    std::vector<WathcerModel*>* wathcersRef = &SharedData::instance().wathcersRef;
+//    for(WathcerModel* w :  *wathcersRef)
 //    {
-//        interval = _myInterval;
-//        interval += 15; //60*3
-//    }else{
-//        interval = _otherInterval;
-//        if(interval > 0) interval += 15; //60*3
-//    }
-//
-//
-//
-//    if(intarvalCounter++ > interval)
-//    {//インターバル待つ
-//        intarvalCounter = 0;
-//        if(samePovCameras.size()-1 < samePovCamerasIndex) samePovCamerasIndex = 0;
-//
-//        if(interval > 0)
+//        if(w->watcher_id == watcher_id)
 //        {
-//            if(_otherInterval > 0)
-//            {
-//                //if(_myInterval > 0)
-//                {
-//                    int switch_camera_id = samePovCameras[samePovCamerasIndex];
-//                    if(switch_camera_id != switch_camera_id_buf)
-//                    {
-//                        switch_camera_id_buf = switch_camera_id;
-////                        SwitchCameraController::switcher(STREEM_GROUP_ID, switch_camera_id_buf, watcher_id);
-////                        if(watcher_id == 1) SwitchCameraController::switcher(STREEM_GROUP_ID, switch_camera_id_buf, 6);
-//
-//
-//
-//                    }
-//
-//                    samePovCamerasIndex++;
-//                }
-//            }else{
-//                // if(camera_id != switch_camera_id_buf)
-//                {
-//                    switch_camera_id_buf = camera_id;
-////                    SwitchCameraController::switcher(STREEM_GROUP_ID, switch_camera_id_buf, watcher_id);
-////                    if(watcher_id == 1) SwitchCameraController::switcher(STREEM_GROUP_ID, switch_camera_id_buf, 6);
-//                }
-//                samePovCamerasIndex = 0;
-//
-//
-//            }
-//        }else{
-//            samePovCamerasIndex = 0;
-//
-//            switch_camera_id_buf = camera_id;
+//            w->camera_id = switch_camera_id;
+//            break;
 //        }
-//
 //    }
-    
-}
-int GogglesController::checkSamePovCamera(std::vector<GogglesController*>* gogglesesRef)
-{
-    samePovCameras.clear();
-    for (auto g : *gogglesesRef)
-    {
-        if(actorID >= 0 && actorID == g->actorID)
-        {
-            
-            samePovCameras.push_back(g->camera_id);
-        }
-        
-    }
-    if(samePovCameras.size() <= 0) samePovCameras.push_back(camera_id);
-}
+//    
+//    samePovCamerasIndex++;
+//
+//    
+//}
+//int GogglesController::checkSamePovCamera(std::vector<GogglesController*>* gogglesesRef)
+//{
+//    samePovCameras.clear();
+//    for (auto g : *gogglesesRef)
+//    {
+//        if(actorID >= 0 && actorID == g->actorID)
+//        {
+//            
+//            samePovCameras.push_back(g->camera_id);
+//        }
+//        
+//    }
+//    if(samePovCameras.size() <= 0) samePovCameras.push_back(camera_id);
+//}
 
 void GogglesController::draw()
 {

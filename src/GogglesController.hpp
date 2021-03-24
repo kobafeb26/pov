@@ -1,8 +1,9 @@
 #ifndef GogglesController_hpp
 #define GogglesController_hpp
 
-#include "ActorController.hpp"
+
 #include "ofxRaycaster.h"
+#include "ActorController.hpp"
 //#include "DataModel.hpp"
 #include <stdio.h>
 
@@ -31,6 +32,8 @@ public:
 
     int actorID;
     float actorDistance;
+    ActorController *lookActorRef;
+    ActorController *myActorRef;
     
     int camera_id;
     int watcher_id;
@@ -40,21 +43,28 @@ public:
     void update();
     void draw();
     //bool intersectsPrimitive(const of3dPrimitive& primitive);
-    
     int intersectsPrimitive(std::vector<ActorController*>* actorsRef);
-    int checkSamePovCamera(std::vector<GogglesController*>* gogglesesRef);
+    //int checkSamePovCamera(std::vector<GogglesController*>* gogglesesRef);
     //void switching();
-    void switching(int _myInterval, int _otherInterval);
-    void resetSwitch();
+    //void switching(int _myInterval, int _otherInterval);
+    //void resetSwitch();
     
-    std::vector<int> samePovCameras;
-    int samePovCamerasIndex;
+    void send(bool isCameraEnable, bool isCameraSwitchingEnable);
     
     
-    int switch_camera_id_buf;
-    int intarvalCounter;
+    
+    //std::vector<int> samePovCameras;
+    //int samePovCamerasIndex;
+    
+    
+    //int switch_camera_id_buf;
+    //int intarvalCounter;
     
     int minInterval;
+    
+    int sendCameraIDBefore;
+    
+    int debug_cameraID;
     
 };
 
