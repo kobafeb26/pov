@@ -56,6 +56,7 @@ private:
     ofxIntSlider SliderDistance;
     
     ofxIntSlider SliderActorWidth;
+    ofxIntSlider SliderActorMinSize;
     
     ofxToggle CameraEnable;
     ofxToggle SwitchCameraEnable;

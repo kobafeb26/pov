@@ -2,19 +2,30 @@
 #include "DataModel.hpp"
 #include "SwitchCameraController.hpp"
 
-void GogglesController::setup()
+GogglesController::GogglesController()
 {
-
     x = 0.0f;
     y = 0.0f;
     z = 0.0f;
-    qx = 0.0f;
-    qy = 0.0f;
-    qz = 0.0f;
-    qw = 0.0f;
+
+    offset_q.x = 0.0f;
+    offset_q.y = 0.0f;
+    offset_q.z = 0.0f;
+    offset_q.w = 0.0f;
     
-    center.setPosition(0, 0, 0);
-    lookat.setPosition(0, 1000, 0);
+    q.x = 0.0f;
+    q.y = 0.0f;
+    q.z = 0.0f;
+    q.w = 0.0f;
+}
+void GogglesController::setup()
+{
+
+
+    
+    
+    center.setPosition(x, y, z);
+    lookat.setPosition(x, y+1000, z);
     lookat.setParent(center);
 
     glm::vec3 rayDirection = glm::vec3(0,1,0);
@@ -31,14 +42,10 @@ void GogglesController::update()
 {
     
     
-    center.setPosition(x, y, z);
-    glm::quat qt;
-    qt.x = qx;
-    qt.y = qy;
-    qt.z = qz;
-    qt.w = qw;
+    center.setPosition(x+offset_x, y+offset_y, z+offset_z);
 
-    center.setOrientation(qt);
+
+    center.setOrientation(q*offset_q);
     
     
     ray.setOrigin(center.getGlobalPosition());
@@ -76,7 +83,7 @@ int GogglesController::intersectsPrimitive(std::vector<ActorController*>* actors
         
         //TODO : 自分のアクターが、見ているグループの中にいたら弾く
         
-        
+        //指定の大きさでチェク
         if(ray.intersectsPrimitive(a->box, baricentricCoordinates, dist, surfaceNormal)){
             if(dist > 0 && dist < actorDistance)
             {
@@ -87,6 +94,26 @@ int GogglesController::intersectsPrimitive(std::vector<ActorController*>* actors
             }
 
         }
+        //最小の大きさでチェク　//近接対応
+        float w = a->box.getWidth();
+        float h = a->box.getHeight();
+        float d = a->box.getDepth();
+        
+        a->box.setWidth(20);
+        a->box.setHeight(20);
+        a->box.setDepth(20);
+        if(ray.intersectsPrimitive(a->box, baricentricCoordinates, dist, surfaceNormal)){
+            if(dist > 0 && dist < actorDistance)
+            {
+                
+                actorID = a->id;
+                actorDistance = dist;
+                lookActorRef = a;
+            }
+        }
+        a->box.setWidth(w);
+        a->box.setHeight(h);
+        a->box.setDepth(d);
         
     }
     
@@ -107,6 +134,8 @@ void GogglesController::send(bool isCameraEnable, bool isCameraSwitchingEnable)
             
             camid = lookActorRef->getCamID();
         }
+        
+        
         
         if(sendCameraIDBefore!=camid)
         {

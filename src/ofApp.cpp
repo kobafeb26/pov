@@ -305,6 +305,26 @@ void ofApp::setup(){
     a->width = 50;
     a->height = 190;
     a->depth = 50;
+    
+    
+    
+    glm::quat qt, qt2;
+    qt.x = cos(45.0/2.0);
+    qt.y = 0.0;
+    qt.z = 0.0;
+    qt.w = sin(45.0/2.0);
+
+    a->rotationEnable = true;
+    a->q =qt;
+    
+    qt2.x = cos(45.0/2.0);
+    qt2.y = 0.0;
+    qt2.z = sin(45.0/2.0);
+    qt2.w = 0.0;
+    
+    a->offset_q = qt2;
+    
+    
     actorsRef->push_back(a);
     
     
@@ -554,149 +574,103 @@ void ofApp::update(){
                 }
                 
                 if(true){
-                for (auto a : *actorsRef)
-                {
-                    //if(a->isCheck) continue;
-                    if(a->id == 501)
+                    for (auto a : *actorsRef)
                     {
-                        std::cout << "hoge" << std::endl;
-                    }
-                    if(!a->isParent && a->parentRef == NULL)continue; //親でもなく、親もいないものはやらない
-                    for (auto a2 : *actorsRef)
-                    {
-                        //if(a2->isCheck) continue;
-                        if(!a2->isParent && a2->parentRef == NULL)continue; //親でもなく、親もいないものはやらない
-                        if(a == a2)continue; //同じアクターは無視
-                        if(a == a2->parentRef)continue; //親が自分なら無視
-                        if(a->parentRef!= NULL && a->parentRef == a2->parentRef)continue; //親が同じなら無視
-                        if(a->parentRef == a2) continue;//自分の親と同じなら無視
-                        
-                        float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2) + pow((a->z - a2->z), 2));
-                        if(dist <= SliderDistance)
+                        //if(a->isCheck) continue;
+                        if(a->id == 501)
                         {
-                            if(a2->parentRef != NULL)
-                            {
-                            if(a2->parentRef->id == 501)
-                            {
-                                std::cout << "hoge" << std::endl;
-                            }
-                            if(a2->parentRef->id == 502)
-                            {
-                                std::cout << "hoge" << std::endl;
-                            }
-                            }
-//                            if((a->parentRef) && a->parentRef->id == 501 && a2->id == 502)
-//                            {
-//                                std::cout << "hoge" << std::endl;
-//                            }
-//                            if((a2->parentRef) && a->id == 199 && a2->parentRef->id == 501)
-//                            {
-//                                std::cout << "hoge" << std::endl;
-//                            }
+                            std::cout << "hoge" << std::endl;
+                        }
+                        if(!a->isParent && a->parentRef == NULL)continue; //親でもなく、親もいないものはやらない
+                        for (auto a2 : *actorsRef)
+                        {
+                            //if(a2->isCheck) continue;
+                            if(!a2->isParent && a2->parentRef == NULL)continue; //親でもなく、親もいないものはやらない
+                            if(a == a2)continue; //同じアクターは無視
+                            if(a == a2->parentRef)continue; //親が自分なら無視
+                            if(a->parentRef!= NULL && a->parentRef == a2->parentRef)continue; //親が同じなら無視
+                            if(a->parentRef == a2) continue;//自分の親と同じなら無視
                             
-                            
-                            
-                            if(a->isParent && a2->isParent)//自分が親で、他の親の場合
+                            float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2) + pow((a->z - a2->z), 2));
+                            if(dist <= SliderDistance)
                             {
-
-
-//                                a->watch_cameras.insert(a->watch_cameras.end(), a2->watch_cameras.begin(), a2->watch_cameras.end());
-//                                a2->watch_cameras.clear();
-                                
-                                for (auto a3 : *actorsRef) //親だった場合、その親に紐づいている子も紐づける
+                 
+                                if(a->isParent && a2->isParent)//自分が親で、他の親の場合
                                 {
-                                    if(a3->parentRef == a2)
+                                    for (auto a3 : *actorsRef) //親だった場合、その親に紐づいている子も紐づける
                                     {
-                                        a3->parentRef = a->parentRef;
-                                    }
-                                }
-                                a2->isParent = false;
-                                a2->parentRef = a;
-                                
- 
-                                
-                                a2->isCheck = true;
-
-
-
-                            }else if(a->isParent && a2->parentRef != NULL)//自分が親、で他の子をの場合
-                            {
-
-//                                a->watch_cameras.insert(a->watch_cameras.end(), a2->parentRef->watch_cameras.begin(), a2->parentRef->watch_cameras.end());
-//                                a2->parentRef->watch_cameras.clear();
-                                a2->parentRef->isParent = false;
-                                a2->parentRef->isCheck = true;
-                                a2->parentRef->parentRef = a;
-                                
-                                a2->watch_cameras.clear();
-                                a2->isParent = false;
-                                a2->isCheck = true;
-                                a2->parentRef = a;
-                                
-                            }else if(a->parentRef != NULL && a2->isParent)//　自分が子、他の親
-                            {
-                                
-//                                a->parentRef->watch_cameras.insert(a->parentRef->watch_cameras.end(), a2->watch_cameras.begin(), a2->watch_cameras.end());
-//                                a2->watch_cameras.clear();
-                               
-                                for (auto a3 : *actorsRef) //親だった場合、その親に紐づいている子も紐づける
-                                {
-                                    if(a3->parentRef == a2)
-                                    {
-                                        a3->parentRef = a->parentRef;
-                                    }
-                                }
-                                a2->isParent = false;
-                                a2->parentRef = a->parentRef;
-                                a2->isCheck = true;
-                                
-                            }else if(a->parentRef != NULL && a2->parentRef != NULL) //自分の親と、他人の親
-                            {
-//                                int a2size = a2->parentRef->watch_cameras.size();
-//                                int asize = a->parentRef->watch_cameras.size();
-//                                a->parentRef->watch_cameras.insert(a->parentRef->watch_cameras.end(), a2->parentRef->watch_cameras.begin(), a2->parentRef->watch_cameras.end());
-//                                a2->parentRef->watch_cameras.clear();
-//                                if(a2->parentRef->isParent)//親だった場合、その親に紐づいている子も紐づける
-//                                {
-                                    for (auto a3 : *actorsRef)
-                                    {
-                                        //if(a3->parentRef == a->parentRef) continue;
-                                        if(a2->parentRef == a3->parentRef)
+                                        if(a3->parentRef == a2)
                                         {
-                                            std::cout << a2->parentRef->id << " -- " << a3->parentRef->id  << std::endl;
-                                            std::cout << a3->id << " -- " << a->id << " : " << a3->parentRef->id << " - " << a->parentRef->id << std::endl;
                                             a3->parentRef = a->parentRef;
-                                            a3->parentRef->isParent = false;
-                                            a3->parentRef->isCheck = true;
-                                           
-                                            
-                                            
                                         }
                                     }
-//                                }else{ //親でなかったら、
-//                                    a2->parentRef->isParent = false;
-//                                    a2->parentRef->parentRef = a->parentRef;
-//                                    a2->parentRef->isCheck = true;
-//                                }
+                                    a2->isParent = false;
+                                    a2->parentRef = a;
+                                    a2->isCheck = true;
 
-                                
-                                a2->watch_cameras.clear();
-                                a2->parentRef = a->parentRef;
-                                a2->isParent = false;
-                                a2->isCheck = true;
-                
+                                }else if(a->isParent && a2->parentRef != NULL)//自分が親、で他の子をの場合
+                                {
+
+                                    a2->parentRef->isParent = false;
+                                    a2->parentRef->isCheck = true;
+                                    a2->parentRef->parentRef = a;
+                                    
+                                    a2->watch_cameras.clear();
+                                    a2->isParent = false;
+                                    a2->isCheck = true;
+                                    a2->parentRef = a;
+                                    
+                                }else if(a->parentRef != NULL && a2->isParent)//　自分が子、他の親
+                                {
+                                    
+                                    for (auto a3 : *actorsRef) //親だった場合、その親に紐づいている子も紐づける
+                                    {
+                                        if(a3->parentRef == a2)
+                                        {
+                                            a3->parentRef = a->parentRef;
+                                        }
+                                    }
+                                    a2->isParent = false;
+                                    a2->parentRef = a->parentRef;
+                                    a2->isCheck = true;
+                                    
+                                }else if(a->parentRef != NULL && a2->parentRef != NULL) //自分の親と、他人の親
+                                {
+  
+                                        for (auto a3 : *actorsRef)
+                                        {
+                                            if(a2->parentRef == a3->parentRef)
+                                            {
+                                                std::cout << a2->parentRef->id << " -- " << a3->parentRef->id  << std::endl;
+                                                std::cout << a3->id << " -- " << a->id << " : " << a3->parentRef->id << " - " << a->parentRef->id << std::endl;
+                                                a3->parentRef = a->parentRef;
+                                                a3->parentRef->isParent = false;
+                                                a3->parentRef->isCheck = true;
+                                               
+                                                
+                                                
+                                            }
+                                        }
+    
+
+                                    
+                                    a2->watch_cameras.clear();
+                                    a2->parentRef = a->parentRef;
+                                    a2->isParent = false;
+                                    a2->isCheck = true;
+                    
+
+
+                                }
+
 
 
                             }
-
 
 
                         }
 
-
                     }
-
-                }
                 
                 }
                 

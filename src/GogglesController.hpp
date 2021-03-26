@@ -20,15 +20,20 @@ class GogglesController
     
 
 public:
+    GogglesController();
     int dataID;
     float x;
     float y;
     float z;
-    float qx;
-    float qy;
-    float qz;
-    float qw;
 
+    
+    float offset_x = 0.f;
+    float offset_y = 0.f;
+    float offset_z = 0.f;
+    
+    glm::quat q;
+    glm::quat offset_q;
+    
 
     int actorID;
     float actorDistance;

@@ -30,7 +30,7 @@ class ActorController
     
 
 public:
-    
+    ActorController();
     int id;
     float width;
     float height;
@@ -39,7 +39,16 @@ public:
     float x;
     float y;
     float z;
+
     
+    float offset_x = 0.f;
+    float offset_y = 0.f;
+    float offset_z = 0.f;
+    
+    glm::quat q;
+    glm::quat offset_q;
+    
+    bool rotationEnable = false;
     
     void setup();
     void updatePos();

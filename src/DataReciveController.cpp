@@ -27,10 +27,19 @@ void DataReciveController::update()
                     g->x = m.getArgAsFloat(1)*100.0f;
                     g->y = m.getArgAsFloat(2)*100.0f;
                     g->z = m.getArgAsFloat(3)*100.0f;
-                    g->qx = m.getArgAsFloat(4);
-                    g->qy = m.getArgAsFloat(5);
-                    g->qz = m.getArgAsFloat(6);
-                    g->qw = m.getArgAsFloat(7);
+                    
+                    
+                    glm::quat q;
+                    q.x = m.getArgAsFloat(4);
+                    q.y = m.getArgAsFloat(5);
+                    q.z = m.getArgAsFloat(6);
+                    q.w = m.getArgAsFloat(7);
+       
+                    g->q = q;
+//                    g->qx = m.getArgAsFloat(4);
+//                    g->qy = m.getArgAsFloat(5);
+//                    g->qz = m.getArgAsFloat(6);
+//                    g->qw = m.getArgAsFloat(7);
                     
                 }
             }
@@ -47,6 +56,13 @@ void DataReciveController::update()
 //                    g->qy = m.getArgAsFloat(5);
 //                    g->qz = m.getArgAsFloat(6);
 //                    g->qw = m.getArgAsFloat(7);
+                    glm::quat q;
+                    q.x = m.getArgAsFloat(4);
+                    q.y = m.getArgAsFloat(5);
+                    q.z = m.getArgAsFloat(6);
+                    q.w = m.getArgAsFloat(7);
+       
+                    a->q = q;
                     
                 }
             }

@@ -1,5 +1,18 @@
 #include "ActorController.hpp"
-
+ActorController::ActorController()
+{
+    offset_q.x = 1.0f;
+    offset_q.y = 0.0f;
+    offset_q.z = 0.0f;
+    offset_q.w = 0.0f;
+    
+    q.x = 0.0f;
+    q.y = 0.0f;
+    q.z = 0.0f;
+    q.w = 0.0f;
+    
+    
+}
 void ActorController::setup()
 {
 
@@ -7,20 +20,35 @@ void ActorController::setup()
     box.set(width, height, depth );
     box.setPosition(x, y+(height/2), z);
     
+
+    
 }
  
 
 void ActorController::updatePos()
 {
-    box.set(width, height, depth );
-    if(id <= 499 && id >= 199)
-    {
-        box.setPosition(x, (y)-((height)/2) + 50, z);
-    }else{
-        box.setPosition(x, y+(height/2), z);
-    }
-
     
+//    if(id <= 499 && id >= 199)
+//    {
+//        box.setPosition(x, (y)-((height)/2) + 50, z);
+//    }else{
+//        box.setPosition(x, y+(height/2), z);
+//    }
+    
+    box.setPosition(x+offset_x, y+offset_y, z+offset_x);
+    
+    if(rotationEnable)
+    {
+//        glm::quat qt;
+//        qt.x = qx;
+//        qt.y = qy;
+//        qt.z = qz;
+//        qt.w = qw;
+
+        box.setOrientation(q*offset_q);
+    }
+    
+    box.set(width, height, depth );
 }
 
 
