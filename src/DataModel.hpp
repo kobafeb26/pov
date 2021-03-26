@@ -5,6 +5,7 @@
 
 #include "GogglesController.hpp"
 #include "ActorController.hpp"
+#include "ProjectorController.hpp"
 
 #define ISSONY false
 #define REQUEST_INTERVAL 1000
@@ -49,6 +50,8 @@ public:
     std::vector<GogglesController*> gogglesesRef;
     std::vector<ActorController*> actorsRef;
     std::vector<WathcerModel*> wathcersRef;
+    std::vector<ProjectorController*> projectorsRef;
+    
     
     bool isSony;
 //    

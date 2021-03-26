@@ -75,6 +75,8 @@ public:
     bool isParent;
     
     int getCamera_id();
+    
+    bool isCheck;
 
     
 };

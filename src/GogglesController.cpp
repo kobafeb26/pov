@@ -66,7 +66,13 @@ int GogglesController::intersectsPrimitive(std::vector<ActorController*>* actors
         glm::vec3 surfaceNormal;
         
         
-        if(a->id == dataID ) continue; //自分のアクターなので参照しない
+        if(!a	->isParent && a->id == dataID )
+        {
+//            if(dataID==199){
+//                std::cout << dataID << "<<<<<<<<<<<<<<<<" <<  a->id << std::endl;
+//            }
+            continue; //自分のアクターなので参照しない
+        }
         
         //TODO : 自分のアクターが、見ているグループの中にいたら弾く
         

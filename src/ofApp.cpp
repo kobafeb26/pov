@@ -1,5 +1,13 @@
 #include "ofApp.h"
 
+
+
+bool cmp( const ActorController * a,  const ActorController * b)
+{
+    return a->watch_cameras.size() > b->watch_cameras.size();
+}
+
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     
@@ -25,6 +33,8 @@ void ofApp::setup(){
     std::vector<GogglesController*>* gogglesesRef = &SharedData::instance().gogglesesRef;
     std::vector<ActorController*>* actorsRef = &SharedData::instance().actorsRef;
     std::vector<WathcerModel*>* wathcersRef = &SharedData::instance().wathcersRef;
+    std::vector<ProjectorController*>* projectorsRef = &SharedData::instance().projectorsRef;
+    
     
     
     //==ゴーグル初期化
@@ -155,6 +165,21 @@ void ofApp::setup(){
     
     
     
+    ProjectorController *p;
+    p = new ProjectorController;
+    p->watcher_id = 8;
+    projectorsRef->push_back(p);
+    
+    
+    p = new ProjectorController;
+    p->watcher_id = 9;
+    projectorsRef->push_back(p);
+
+
+    p = new ProjectorController;
+    p->watcher_id = 10;
+    projectorsRef->push_back(p);
+    
     
 //    w = new WathcerModel;
 //    w->camera_id = 0;
@@ -172,91 +197,109 @@ void ofApp::setup(){
     ActorController *a;
 
     
-//    //--0--//
-//    a = new ActorController;
-//    a->id = 199;
-//    a->x = 300;
-//    a->y = 500;
-//    a->z = 0;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
+    //--0--//
+    a = new ActorController;
+    a->id = 199;
+    a->x = 300;
+    a->y = 500;
+    a->z = 0;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
 
     
     
-//    //--1--//
-//    a = new ActorController;
-//    a->id = 200;
-//    a->x = 0;
-//    a->y = 0;
-//    a->z = 0;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
-//
-//    //--2--//
-//    a = new ActorController;
-//    a->id = 201;
-//    a->x = 0;
-//    a->y = 0;
-//    a->z = 1000;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
-//
-//    //--3--//
-//    a = new ActorController;
-//    a->id = 202;
-//    a->x = 0;
-//    a->y = 0;
-//    a->z = 1000;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
-//
-//    //--4--//
-//    a = new ActorController;
-//    a->id = 203;
-//    a->x = 0;
-//    a->y = 0;
-//    a->z = 1000;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
-//
-//    //--5--//
-//    a = new ActorController;
-//    a->id = 204;
-//    a->x = 0;
-//    a->y = 0;
-//    a->z = 1000;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
-//
-//    //--6--//
-//    a = new ActorController;
-//    a->id = 205;
-//    a->x = 0;
-//    a->y = 0;
-//    a->z = 1000;
-//    a->width = 50;
-//    a->height = 190;
-//    a->depth = 50;
-//    actorsRef->push_back(a);
-//
+    //--1--//
+    a = new ActorController;
+    a->id = 200;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    //--2--//
+    a = new ActorController;
+    a->id = 201;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    //--3--//
+    a = new ActorController;
+    a->id = 202;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    //--4--//
+    a = new ActorController;
+    a->id = 203;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    //--5--//
+    a = new ActorController;
+    a->id = 204;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    //--6--//
+    a = new ActorController;
+    a->id = 205;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    
+    //--7--//
+    a = new ActorController;
+    a->id = 206;
+    a->x = 0;
+    a->y = 0;
+    a->z = 1000;
+    a->width = 40;
+    a->height = 190;
+    a->depth = 40;
+    actorsRef->push_back(a);
+
+    
+    
+    
+    
+    
+    
     
     
     //--Dancer1--//
     a = new ActorController;
     a->id = 501;
-    a->x = 0;
+    a->x = 1;
     a->y = 500;
     a->z = 0;
     a->width = 50;
@@ -283,23 +326,33 @@ void ofApp::setup(){
     a->x = 200;
     a->y = 500;
     a->z = 0;
-    a->width = 50;
-    a->height = 190;
-    a->depth = 50;
+    a->width = 10;
+    a->height = 60;
+    a->depth = 10;
     actorsRef->push_back(a);
     
     
-    //--Dancer4--//
+    //--Dancer4--//ぬいぐるみ
     a = new ActorController;
     a->id = 504;
     a->x = 100;
     a->y = 500;
     a->z = 0;
     a->width = 50;
-    a->height = 190;
+    a->height = 50;
     a->depth = 50;
     actorsRef->push_back(a);
     
+    //--Dancer5--//カリンバ
+    a = new ActorController;
+    a->id = 505;
+    a->x = 100;
+    a->y = 500;
+    a->z = 0;
+    a->width = 30;
+    a->height = 30;
+    a->depth = 30;
+    actorsRef->push_back(a);
     
     
 //    a = new ActorController;
@@ -342,7 +395,10 @@ void ofApp::setup(){
     gui.setup(); // most of the time you don't need a name
     gui.add(CameraEnable.setup("Camera Enable", true));
     gui.add(SwitchCameraEnable.setup("Switch camera Enable", false));
-    gui.add(uiSliderInterval.setup("interval", /*def*/1000, /*min*/300, /*max*/3000));
+    gui.add(uiSliderInterval.setup("interval", /*def*/1000, /*min*/300, /*max*/5000));
+    gui.add(SliderDistance.setup("Distance", /*def*/60, /*min*/ 0, /*max*/300));
+    gui.add(SliderActorWidth.setup("ActorWidth", /*def*/60, /*min*/ 0, /*max*/300));
+    
     
     
     // ライティングを有効に
@@ -368,47 +424,296 @@ void ofApp::update(){
     
     std::vector<GogglesController*>* gogglesesRef = &SharedData::instance().gogglesesRef;
     std::vector<ActorController*>* actorsRef = &SharedData::instance().actorsRef;
+    std::vector<ProjectorController*>* projectorsRef = &SharedData::instance().projectorsRef;
     
+    //アクターの位置を更新
     for (auto a : *actorsRef)
     {
-        a->watch_cameras.clear();
-        a->parentRef = NULL;
-        a->isParent = false;
+//        a->watch_cameras.clear();
+//        a->parentRef = NULL;
+//        a->isParent = false;
         a->updatePos();
+        a->width = SliderActorWidth;
+        a->depth = SliderActorWidth;
     }
     
-    //if(SwitchCameraEnable)
+    //ゴーグルーの位置を更新
+    for (auto g : *gogglesesRef)
     {
-        //アクターのグルーピング
+        g->update();//ゴーグルのポジションをアップデート
+        int aid = g->intersectsPrimitive(&(*actorsRef));//見ているアクトを探す
+    }
+    
+    
+    
+    if(false){//アクターのグルーピング マイフレ
         for (auto a : *actorsRef)
         {
-      
-            for (auto a2 : *actorsRef)
-            {
+            a->watch_cameras.clear();
+            a->parentRef = NULL;
+            a->isParent = false;
+            //a->updatePos();
+        }
 
-                if(a->id == a2->id){
-                    //a->isParent = true;
-                    continue;
-                }
-                //２点の距離　sqrt( (x1-x2)^2 + (y1-y2)^2 )
-                float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2));
-                if(dist <= 100)
+        
+        if(SliderDistance > 0){
+            for (auto a : *actorsRef)
+            {
+          
+                for (auto a2 : *actorsRef)
                 {
-                    if(!a2->isParent && a2->parentRef == NULL)//まだ親が見つけられてない
+
+                    if(a->id == a2->id){
+                        //a->isParent = true;
+                        continue;
+                    }
+                    //２点の距離　sqrt( (x1-x2)^2 + (y1-y2)^2 )
+                    float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2) + pow((a->z - a2->z), 2));
+                    if(dist <= SliderDistance)
                     {
-                        //std::cout << a->id << " near " << a2->id << std::endl;
-                        if(a->parentRef==NULL)
+                        if(!a2->isParent && a2->parentRef == NULL)//まだ親が見つけられてない
                         {
-                            a2->parentRef = a;
-                            a->isParent = true;
-                        }else{
-                            a2->parentRef = a->parentRef;
+                            //std::cout << a->id << " near " << a2->id << std::endl;
+                            if(a->parentRef==NULL)
+                            {
+                                a2->parentRef = a;
+                                a->isParent = true;
+                            }else{
+                                a2->parentRef = a->parentRef;
+                            }
                         }
                     }
                 }
+
+            }
+        }
+    }
+    
+    
+    
+    
+    //if(SwitchCameraEnable)
+    
+    int minInterval = uiSliderInterval;
+    //スイッチングタイミング
+    uint64_t nowtime = ofGetElapsedTimeMillis();
+    if((nowtime-beforeTime) > minInterval) //interval(msec)
+    {
+        beforeTime = nowtime;
+     
+        if(true){//アクターのグルーピング インターバルあり
+            for (auto a : *actorsRef)
+            {
+                a->watch_cameras.clear();
+                a->parentRef = NULL;
+                a->isParent = false;
+                //a->updatePos();
+                a->isCheck = false;
             }
 
+            
+            if(SliderDistance > 0){
+                for (auto a : *actorsRef)
+                {
+              
+                    for (auto a2 : *actorsRef)
+                    {
+
+                        if(a->id == a2->id){
+                            //a->isParent = true;
+                            continue;
+                        }
+                        //２点の距離　sqrt( (x1-x2)^2 + (y1-y2)^2 )
+                        float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2) + pow((a->z - a2->z), 2));
+                        if(dist <= SliderDistance)
+                        {
+
+                            
+                            if(!a2->isParent && a2->parentRef == NULL)//親でもない、または親が見つけられてない
+                            {
+                                //std::cout << a->id << " near " << a2->id << std::endl;
+                                if(a->parentRef==NULL)
+                                {
+                                    a2->parentRef = a;
+                                    a->isParent = true;
+                                }else{
+                                    if(a->parentRef->parentRef == NULL)
+                                    {
+                                        a2->parentRef = a->parentRef;
+                                    }else{
+                                        a2->parentRef = a->parentRef->parentRef;
+                                    }
+                                }
+                            }else{
+                                
+                                
+                            }
+                        }
+                    }
+
+                }
+                
+                if(true){
+                for (auto a : *actorsRef)
+                {
+                    //if(a->isCheck) continue;
+                    if(a->id == 501)
+                    {
+                        std::cout << "hoge" << std::endl;
+                    }
+                    if(!a->isParent && a->parentRef == NULL)continue; //親でもなく、親もいないものはやらない
+                    for (auto a2 : *actorsRef)
+                    {
+                        //if(a2->isCheck) continue;
+                        if(!a2->isParent && a2->parentRef == NULL)continue; //親でもなく、親もいないものはやらない
+                        if(a == a2)continue; //同じアクターは無視
+                        if(a == a2->parentRef)continue; //親が自分なら無視
+                        if(a->parentRef!= NULL && a->parentRef == a2->parentRef)continue; //親が同じなら無視
+                        if(a->parentRef == a2) continue;//自分の親と同じなら無視
+                        
+                        float dist = std::sqrt(pow((a->x - a2->x), 2.0) + pow((a->y - a2->y), 2) + pow((a->z - a2->z), 2));
+                        if(dist <= SliderDistance)
+                        {
+                            if(a2->parentRef != NULL)
+                            {
+                            if(a2->parentRef->id == 501)
+                            {
+                                std::cout << "hoge" << std::endl;
+                            }
+                            if(a2->parentRef->id == 502)
+                            {
+                                std::cout << "hoge" << std::endl;
+                            }
+                            }
+//                            if((a->parentRef) && a->parentRef->id == 501 && a2->id == 502)
+//                            {
+//                                std::cout << "hoge" << std::endl;
+//                            }
+//                            if((a2->parentRef) && a->id == 199 && a2->parentRef->id == 501)
+//                            {
+//                                std::cout << "hoge" << std::endl;
+//                            }
+                            
+                            
+                            
+                            if(a->isParent && a2->isParent)//自分が親で、他の親の場合
+                            {
+
+
+//                                a->watch_cameras.insert(a->watch_cameras.end(), a2->watch_cameras.begin(), a2->watch_cameras.end());
+//                                a2->watch_cameras.clear();
+                                
+                                for (auto a3 : *actorsRef) //親だった場合、その親に紐づいている子も紐づける
+                                {
+                                    if(a3->parentRef == a2)
+                                    {
+                                        a3->parentRef = a->parentRef;
+                                    }
+                                }
+                                a2->isParent = false;
+                                a2->parentRef = a;
+                                
+ 
+                                
+                                a2->isCheck = true;
+
+
+
+                            }else if(a->isParent && a2->parentRef != NULL)//自分が親、で他の子をの場合
+                            {
+
+//                                a->watch_cameras.insert(a->watch_cameras.end(), a2->parentRef->watch_cameras.begin(), a2->parentRef->watch_cameras.end());
+//                                a2->parentRef->watch_cameras.clear();
+                                a2->parentRef->isParent = false;
+                                a2->parentRef->isCheck = true;
+                                a2->parentRef->parentRef = a;
+                                
+                                a2->watch_cameras.clear();
+                                a2->isParent = false;
+                                a2->isCheck = true;
+                                a2->parentRef = a;
+                                
+                            }else if(a->parentRef != NULL && a2->isParent)//　自分が子、他の親
+                            {
+                                
+//                                a->parentRef->watch_cameras.insert(a->parentRef->watch_cameras.end(), a2->watch_cameras.begin(), a2->watch_cameras.end());
+//                                a2->watch_cameras.clear();
+                               
+                                for (auto a3 : *actorsRef) //親だった場合、その親に紐づいている子も紐づける
+                                {
+                                    if(a3->parentRef == a2)
+                                    {
+                                        a3->parentRef = a->parentRef;
+                                    }
+                                }
+                                a2->isParent = false;
+                                a2->parentRef = a->parentRef;
+                                a2->isCheck = true;
+                                
+                            }else if(a->parentRef != NULL && a2->parentRef != NULL) //自分の親と、他人の親
+                            {
+//                                int a2size = a2->parentRef->watch_cameras.size();
+//                                int asize = a->parentRef->watch_cameras.size();
+//                                a->parentRef->watch_cameras.insert(a->parentRef->watch_cameras.end(), a2->parentRef->watch_cameras.begin(), a2->parentRef->watch_cameras.end());
+//                                a2->parentRef->watch_cameras.clear();
+//                                if(a2->parentRef->isParent)//親だった場合、その親に紐づいている子も紐づける
+//                                {
+                                    for (auto a3 : *actorsRef)
+                                    {
+                                        //if(a3->parentRef == a->parentRef) continue;
+                                        if(a2->parentRef == a3->parentRef)
+                                        {
+                                            std::cout << a2->parentRef->id << " -- " << a3->parentRef->id  << std::endl;
+                                            std::cout << a3->id << " -- " << a->id << " : " << a3->parentRef->id << " - " << a->parentRef->id << std::endl;
+                                            a3->parentRef = a->parentRef;
+                                            a3->parentRef->isParent = false;
+                                            a3->parentRef->isCheck = true;
+                                           
+                                            
+                                            
+                                        }
+                                    }
+//                                }else{ //親でなかったら、
+//                                    a2->parentRef->isParent = false;
+//                                    a2->parentRef->parentRef = a->parentRef;
+//                                    a2->parentRef->isCheck = true;
+//                                }
+
+                                
+                                a2->watch_cameras.clear();
+                                a2->parentRef = a->parentRef;
+                                a2->isParent = false;
+                                a2->isCheck = true;
+                
+
+
+                            }
+
+
+
+                        }
+
+
+                    }
+
+                }
+                
+                }
+                
+                
+                std::cout << actorsRef << std::endl;
+                
+                
+                
+            }
+            
+            
+            
         }
+        
+        
+        
+        
         
         
         //各ゴーグルが何をみているか確認する
@@ -418,10 +723,15 @@ void ofApp::update(){
             int aid = g->intersectsPrimitive(&(*actorsRef));//見ているアクトを探す
             if(aid >= 0)
             {
+                
                 for (auto a : *actorsRef) //アクト本体を探す
                 {
                     if(a->id == aid)//見つけたアクトの配列にカメラIDを追加
                     {
+                        if(g->watcher_id == 4)
+                        {
+                            std::cout << "Hoge" << std::endl;
+                        }
                         //a->watcherGoggleses.push_back(g->camera_id);
                         if(a->isParent||a->parentRef == NULL)//親がいなかったらそのアクターに代入
                         {
@@ -436,20 +746,44 @@ void ofApp::update(){
                 
             }
         }
+        
+        
+
+        
+        
+        //カメラ切り替え
+        for (auto a : *actorsRef)
+        {
+            a->updateCam(uiSliderInterval);
+        }
+        
+        
+        
+        
+        //配信アプリへ切り替え指示
+        for (auto g : *gogglesesRef)
+        {
+            g->send(CameraEnable, SwitchCameraEnable);
+        }
+        
+        
+        
+        //アクターを見られている数でソート
+        std::vector<ActorController*> aaa;
+        copy(actorsRef->begin(), actorsRef->end(), back_inserter(aaa) );
+        std::sort(aaa.begin(), aaa.end(),cmp);
+        
+        //プロジェクター出力
+        projectorsRef->at(0)->send(CameraEnable, SwitchCameraEnable, aaa.at(0)->getCamID());
+        projectorsRef->at(1)->send(CameraEnable, SwitchCameraEnable, aaa.at(1)->getCamID());
+        projectorsRef->at(2)->send(CameraEnable, SwitchCameraEnable, aaa.at(2)->getCamID());
     }
     
-    //配信アプリへ切り替え指示
-    for (auto g : *gogglesesRef)
-    {
-        g->send(CameraEnable, SwitchCameraEnable);
-    }
+
     
+
     
-    //カメラ切り替え
-    for (auto a : *actorsRef)
-    {
-        a->updateCam(uiSliderInterval);
-    }
+
 }
 
 //--------------------------------------------------------------
@@ -490,6 +824,7 @@ void ofApp::draw(){
     
     std::vector<GogglesController*>* gogglesesRef = &SharedData::instance().gogglesesRef;
     std::vector<ActorController*>* actorsRef = &SharedData::instance().actorsRef;
+    std::vector<ProjectorController*>* projectorsRef = &SharedData::instance().projectorsRef;
     
     ofSetColor(ofColor::magenta);
     //box.draw();
@@ -528,10 +863,7 @@ void ofApp::draw(){
         //ofScale(3, 3);
         
         stringstream ss;
-        ss << "interval my : ";
-        ss << uiSliderInterval << endl;
-//        ss << "interval other : ";
-//        ss << intervals->y << endl;
+
         
         ss << "Actor List" << endl;
         for (auto a : *actorsRef)
@@ -564,7 +896,17 @@ void ofApp::draw(){
             
         }
         
-        font.drawString(ss.str().c_str(), 20, 120);
+        ss << "Projector List" << endl;
+        for (auto p : *projectorsRef)
+        {
+            ss << " watcher:" << p->watcher_id;
+            //ss << " pov_actor:"
+            ss << " camera: " << p->debug_cameraID;
+            ss << endl;
+        }
+        
+        
+        font.drawString(ss.str().c_str(), 20, 150);
         //ofDrawBitmapString(ss.str().c_str(), 20, 20);
         
         ofPopMatrix();
@@ -667,7 +1009,28 @@ void ofApp::keyPressed(int key){
             
         case '1':
             //SwitchCameraController::switcher();
+        {
+            std::vector<ActorController*>* actorsRef = &SharedData::instance().actorsRef;
+            for (auto a : *actorsRef)
+            {
+                a->x = 1000;
+                a->y = 1000;
+                a->z = 1000;
+                
+            }
+            
+            std::vector<GogglesController*>* gogglesesRef = &SharedData::instance().gogglesesRef;
+            for (auto g : *gogglesesRef)
+            {
+                g->x = 1000;
+                g->y = 1000;
+                g->z = 1000;
+                
+            }
+            
+            
             break;
+        }
             
         case '2':
             //SwitchCameraController::switcher(STREEM_GROUP_ID, 384, 522);

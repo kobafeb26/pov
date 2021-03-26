@@ -3,7 +3,7 @@
 void ActorController::setup()
 {
 
-    
+    parentRef=NULL;
     box.set(width, height, depth );
     box.setPosition(x, y+(height/2), z);
     
@@ -13,7 +13,7 @@ void ActorController::setup()
 void ActorController::updatePos()
 {
     box.set(width, height, depth );
-    if(id >= 199)
+    if(id <= 499 && id >= 199)
     {
         box.setPosition(x, (y)-((height)/2) + 50, z);
     }else{
@@ -29,13 +29,13 @@ void ActorController::updateCam(int interval)
  
     if(watch_cameras.size() > 0) //見ているカメラがいる
     {
-        int minInterval = interval/watch_cameras.size();
-        //int minInterval = interval;
+        //int minInterval = interval/watch_cameras.size();
+        int minInterval = interval;
         //スイッチングタイミング
-        uint64_t nowtime = ofGetElapsedTimeMillis();
-        if((nowtime-beforeTime) > minInterval) //interval(msec)
+        //uint64_t nowtime = ofGetElapsedTimeMillis();
+        //if((nowtime-beforeTime) > minInterval) //interval(msec)
         {
-            beforeTime = nowtime;
+            //beforeTime = nowtime;
             watch_cameras_index++;
             if(watch_cameras.size()-1 < watch_cameras_index) watch_cameras_index = 0;
         }

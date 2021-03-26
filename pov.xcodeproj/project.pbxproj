@@ -35,6 +35,7 @@
 		CF4918D625FB5B7E0005C4B4 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF4918C225FB5B7E0005C4B4 /* ofxLabel.cpp */; };
 		CF4918D725FB5B7E0005C4B4 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF4918CB25FB5B7E0005C4B4 /* ofxPanel.cpp */; };
 		CF4918D825FB5B7E0005C4B4 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF4918CC25FB5B7E0005C4B4 /* ofxSlider.cpp */; };
+		CF652248260B4E6200256AEC /* ProjectorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CF652246260B4E6200256AEC /* ProjectorController.cpp */; };
 		CFC7D5FC25E7CC880066D682 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFC7D5C325E7CC870066D682 /* libcurl.a */; };
 		CFC7D5FE25E7CC880066D682 /* ofxCurlFormTypeInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFC7D5C925E7CC870066D682 /* ofxCurlFormTypeInput.cpp */; };
 		CFC7D5FF25E7CC880066D682 /* ofxCurlFormType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFC7D5D625E7CC870066D682 /* ofxCurlFormType.cpp */; };
@@ -125,6 +126,8 @@
 		CF4918CC25FB5B7E0005C4B4 /* ofxSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSlider.cpp; sourceTree = "<group>"; };
 		CF4918CD25FB5B7E0005C4B4 /* ofxColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorPicker.h; sourceTree = "<group>"; };
 		CF4918CE25FB5B7E0005C4B4 /* ofxPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPanel.h; sourceTree = "<group>"; };
+		CF652246260B4E6200256AEC /* ProjectorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectorController.cpp; sourceTree = "<group>"; };
+		CF652247260B4E6200256AEC /* ProjectorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ProjectorController.hpp; sourceTree = "<group>"; };
 		CFC7D5C325E7CC870066D682 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcurl.a; sourceTree = "<group>"; };
 		CFC7D5C825E7CC870066D682 /* ofxCurlFormType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCurlFormType.h; sourceTree = "<group>"; };
 		CFC7D5C925E7CC870066D682 /* ofxCurlFormTypeInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCurlFormTypeInput.cpp; sourceTree = "<group>"; };
@@ -894,6 +897,8 @@
 				A424BDBBBA7049C6CAABB2E1 /* GogglesController.cpp */,
 				216303BB1F22087F8AE5D7E4 /* GogglesController.hpp */,
 				AEE68A8BDBC792FE478BD978 /* DataReciveController.hpp */,
+				CF652246260B4E6200256AEC /* ProjectorController.cpp */,
+				CF652247260B4E6200256AEC /* ProjectorController.hpp */,
 				6ECEBDDB6789D983ECD8447C /* DataReciveController.cpp */,
 				CFC7D60525E7D50C0066D682 /* SwitchCameraController.cpp */,
 				CFC7D60625E7D50C0066D682 /* SwitchCameraController.hpp */,
@@ -1031,6 +1036,7 @@
 				CF4918D125FB5B7E0005C4B4 /* ofxSliderGroup.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				CF652248260B4E6200256AEC /* ProjectorController.cpp in Sources */,
 				2506A07924A7D4CFA56292CC /* GogglesController.cpp in Sources */,
 				5232700DC14EDE79BAE1B67D /* DataReciveController.cpp in Sources */,
 				B71CB524A8AE0E87A8D3030B /* ActorController.cpp in Sources */,

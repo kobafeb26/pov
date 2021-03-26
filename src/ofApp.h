@@ -5,6 +5,7 @@
 #include "ActorController.hpp"
 #include "DataReciveController.hpp"
 #include "SwitchCameraController.hpp"
+
 #include "ofxGui.h"
 
 
@@ -52,6 +53,10 @@ private:
     ofxPanel gui;
     
     ofxIntSlider uiSliderInterval;
+    ofxIntSlider SliderDistance;
+    
+    ofxIntSlider SliderActorWidth;
+    
     ofxToggle CameraEnable;
     ofxToggle SwitchCameraEnable;
     
